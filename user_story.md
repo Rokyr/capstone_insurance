@@ -1,4 +1,4 @@
-### User Stories
+# User Stories
 
 1. **As a Data Engineer**,  
 I want to test and time the performance of the extraction process from the raw insurance dataset,  
@@ -27,50 +27,50 @@ so that I can verify correctness, catch issues early, and ensure the system rema
 ---
 
 ### **Data Extraction**
-- [ ] Raw insurance dataset is successfully extracted  
-- [ ] Extraction time is logged  
-- [ ] Extraction completes in under X seconds  
-- [ ] Errors during extraction are logged and handled  
-- [ ] Data is stored in a Pandas DataFrame  
-- [ ] Unit tests validate extraction logic  
+- [x] Raw insurance dataset is successfully extracted  
+- [x] Extraction time is logged  
+- [x] Extraction completes in under X seconds  
+- [x] Errors during extraction are logged and handled  
+- [x] Data is stored in a Pandas DataFrame  
+- [x] Unit tests validate extraction logic  
 
 ---
 
 ### **Data Transformation**
-- [ ] Numeric columns cleaned and normalised  
-- [ ] Categorical variables encoded consistently  
-- [ ] Missing values removed  
-- [ ] Outliers identified and handled  
-- [ ] Final processed dataset is saved  
-- [ ] Transformation steps are logged  
-- [ ] Unit + integration tests validate transformations  
+- [x] Numeric columns cleaned and normalised  
+- [x] Categorical variables encoded consistently  
+- [x] Missing values removed  
+- [x] Outliers identified and handled  
+- [x] Final processed dataset is saved  
+- [x] Transformation steps are logged  
+- [...] Unit + integration tests validate transformations  
 
 ---
 
 ### **Data Loading**
-- [ ] .env.test and .env.dev configured  
-- [ ] Load function writes data into database  
-- [ ] Schema is consistent and documented  
-- [ ] Load failures are logged  
-- [ ] Data retrieval is tested and verified  
+- [x] .env.test and .env.dev configured  
+- [...] Load function writes data into database  
+- [...] Schema is consistent and documented  
+- [x] Load failures are logged  
+- [...] Data retrieval is tested and verified  
 
 ---
 
 ### **Visualisation**
-- [ ] Streamlit dashboard runs using **run_app** in terminal  
-- [ ] Correlation interactive graph displayed  
-- [ ] Interactive updates work smoothly  
-- [ ] Dashboard reads only the processed dataset  
+- [x] Streamlit dashboard runs using **run_app** in terminal  
+- [x] Correlation interactive graph displayed  
+- [x] Interactive updates work smoothly  
+- [...] Dashboard reads only the processed dataset  
 
 ---
 
 ### **Testing & Validation**
-- [ ] Unit tests for extraction  
-- [ ] Unit tests for transformation  
-- [ ] Unit tests for load  
-- [ ] Integration tests for ETL end-to-end  
-- [ ] Component tests for visualisation/dashboard  
-- [ ] **run_tests** command executes all tests  
-- [ ] Achieve 90%+ coverage (optional)
+- [x] Unit tests for extraction  
+- [...] Unit tests for transformation  
+- [...] Unit tests for load  
+- [...] Integration tests for ETL end-to-end  
+- [...] Tests for visualisation/dashboard  
+- [x] **run_tests** command executes all tests  
+- [...] Achieve 90%+ coverage
 
 ---
