@@ -22,15 +22,6 @@ def test_setup_env_file_not_found_test(mock_exists):
         setup_env(["script_name", "test"])
 
 
-@patch("os.path.exists")
-def test_setup_env_file_not_found_prod(mock_exists):
-    mock_exists.return_value = False
-    with pytest.raises(
-        FileNotFoundError, match="Environment file '.env' not found"
-    ):
-        setup_env(["script_name", "prod"])
-
-
 def test_setup_env_invalid_environment():
     with pytest.raises(ValueError, match="Please provide an environment"):
         setup_env(["script_name", "invalid"])
@@ -81,9 +72,6 @@ def test_setup_env_loads_correct_env_file(
 
     setup_env(["script_name", "dev"])
     mock_load_dotenv.assert_called_with(".env.dev", override=True)
-
-    setup_env(["script_name", "prod"])
-    mock_load_dotenv.assert_called_with(".env", override=True)
 
 
 @patch("os.path.exists")

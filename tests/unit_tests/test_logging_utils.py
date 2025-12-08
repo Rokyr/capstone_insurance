@@ -8,6 +8,8 @@ from src.utils.logging_utils import (
     _create_formatter,
     _create_handlers,
     setup_logger,
+    log_extract_success,
+    log_load_success,
 )
 
 
@@ -42,6 +44,9 @@ def test_create_handlers_returns_both_handlers():
         assert file_handler.level == logging.INFO
         assert console_handler.level == logging.INFO
 
+        file_handler.close()
+        console_handler.close()
+
 
 @patch("src.utils.logging_utils.logging.getLogger")
 def test_setup_logger_creates_logger_with_handlers(mock_get_logger):
@@ -65,3 +70,35 @@ def test_setup_logger_skips_handlers_if_already_exist(mock_get_logger):
     setup_logger("test", "test.log")
 
     mock_logger.addHandler.assert_not_called()
+
+
+@patch("src.utils.logging_utils.logging.getLogger")
+def test_setup_logger_skips_handlers_if_already_exist(mock_get_logger):
+    mock_logger = MagicMock()
+    mock_logger.handlers = [MagicMock()]  # Already has handlers
+    mock_get_logger.return_value = mock_logger
+
+    setup_logger("test", "test.log")
+
+    mock_logger.addHandler.assert_not_called()
+
+
+def test_log_extract_success_exceeds_expected_rate():
+    mock_logger = MagicMock()
+
+    log_extract_success(mock_logger, "slow_data", (100, 3), 5.0, 0.01)
+
+    assert mock_logger.info.call_count == 3
+    mock_logger.warning.assert_called_once_with(
+        "Execution time per row exceeds 0.01: 0.05 seconds"
+    )
+
+
+def test_log_load_success_logs_info_for_nonempty_data():
+    mock_logger = MagicMock()
+
+    log_load_success(mock_logger, "slow_data", (100, 3), 5.0)
+
+    # Should log 4 info messages (success, loaded, execution time, per-row time)
+    assert mock_logger.info.call_count == 4
+    mock_logger.warning.assert_not_called()

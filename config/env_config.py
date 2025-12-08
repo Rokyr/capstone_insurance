@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-ENVS = ['dev', 'test', 'prod']
+ENVS = ["dev", "test"]
 
 
 def setup_env(argv):
@@ -10,7 +10,7 @@ def setup_env(argv):
     This function loads the appropriate environment
     variables based on the provided environment.
     It expects the first argument to be the environment
-    name (e.g., 'dev', 'test', 'prod').
+    name (e.g., 'dev', 'test').
     It clears any previous environment variables
     related to database configurations to avoid
     conflicts when switching environments.
@@ -30,20 +30,21 @@ def setup_env(argv):
     """
     if len(argv) != 2 or argv[1] not in ENVS:
         raise ValueError(
-            'Please provide an environment: '
-            f'{ENVS}. E.g. run_etl dev'
+            "Please provide an environment: " f"{ENVS}. E.g. run_etl dev"
         )
 
     env = argv[1]
 
     cleanup_previous_env()
-    os.environ['ENV'] = env
+    os.environ["ENV"] = env
 
-    env_file = '.env' if env == 'prod' else f'.env.{env}'
-    
+    # Always expect .env.dev or .env.test
+
+    env_file = f".env.{env}"
+
     if not os.path.exists(env_file):
         raise FileNotFoundError(f"Environment file '{env_file}' not found")
-    
+
     print(f"Loading environment variables from: {env_file}")
     load_dotenv(env_file, override=True)
 
@@ -72,10 +73,16 @@ def cleanup_previous_env():
     environments.
     """
     keys_to_clear = [
-        'SOURCE_DB_NAME', 'SOURCE_DB_USER', 'SOURCE_DB_PASSWORD',
-        'SOURCE_DB_HOST', 'SOURCE_DB_PORT',
-        'TARGET_DB_NAME', 'TARGET_DB_USER', 'TARGET_DB_PASSWORD',
-        'TARGET_DB_HOST', 'TARGET_DB_PORT'
+        "SOURCE_DB_NAME",
+        "SOURCE_DB_USER",
+        "SOURCE_DB_PASSWORD",
+        "SOURCE_DB_HOST",
+        "SOURCE_DB_PORT",
+        "TARGET_DB_NAME",
+        "TARGET_DB_USER",
+        "TARGET_DB_PASSWORD",
+        "TARGET_DB_HOST",
+        "TARGET_DB_PORT",
     ]
     for key in keys_to_clear:
         if key in os.environ:
