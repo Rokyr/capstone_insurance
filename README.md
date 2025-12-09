@@ -11,7 +11,7 @@ Data can be accessed on [Kaggle](https://www.kaggle.com/datasets/mohankrishnatha
   ```bash
   git clone https://github.com/Rokyr/capstone_insurance
 
-- Create a virtual environment  
+- Create a virtual environment
   ```bash
   python -m venv venv
   source .venv/Scripts/activate 
@@ -21,7 +21,7 @@ Data can be accessed on [Kaggle](https://www.kaggle.com/datasets/mohankrishnatha
   pip install -r requirements.txt
 
 - Download the dataset and place the csv in the data/raw directory
-- Create `.env.test` and `.env.dev` files in the root of the repository.  
+- Create **.env.test** and **.env.dev** files in the root of the repository.  
 These files should contain the following structure and are used to load 
 the data into a database of your choice:
 
@@ -65,16 +65,16 @@ Runs linting checks across the codebase to enforce style and identify potential 
 ---
 # 2. Choice of Data
 
-## Rich Feature Set
+### Rich Variable Set
 The dataset includes attributes such as age, sex, BMI, number of children, smoking status, and region. These provide a balanced mix of socioeconomic and clinical indicators, making it suitable for both exploratory analysis and predictive modelling, which shall be on the agenda next.
 
-## Potential for Correlation and Risk Analysis
+### Potential for Correlation and Risk Analysis
 The combination of demographic, lifestyle, and cost variables allows for building dashboards that highlight correlations, risk scores, and utilisation patterns.
 
 ---
 # 3. ETL
 The pipeline is designed to:
-- Extract from csv file.
+- Extract from csv file and log extraction time.
 - Transform the data by cleaning, validating, and engineering features.
 - Load the processed data into a structured format for streamlit application and a database. 
 

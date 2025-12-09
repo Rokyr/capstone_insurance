@@ -1,4 +1,4 @@
-# User Stories
+# User Stories/epics
 
 1. **As a Data Engineer**,  
 I want to test and time the performance of the extraction process from the raw insurance dataset,  
@@ -16,7 +16,7 @@ so that I can query and validate the data in a reproducible environment.
 I want to visualise correlations and trends in the insurance data through the Streamlit dashboard,  
 so that I can explore how demographic and lifestyle factors influence insurance costs interactively.
 
-5. **As a Developer**,  
+5. **As a Data Engineer**,  
 I want to run unit, integration, and component tests across the ETL pipeline and dashboard,  
 so that I can verify correctness, catch issues early, and ensure the system remains reliable.
 

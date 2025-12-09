@@ -10,7 +10,7 @@ from sqlalchemy.types import String, Float
 # Configure the logger
 logger = setup_logger(__name__, "load_data_correlation.log")
 
-TYPE = "CORRELATION table moved to database"
+TYPE = "CORRELATION table to database"
 
 TARGET_SCHEMA = "all_2509"
 TARGET_TABLE = "rp_capstone_load"
@@ -31,9 +31,7 @@ def load_correlation(transformed_data: pd.DataFrame) -> None:
         Exception: If loading fails.
     """
     if transformed_data.empty:
-        logger.warning(
-            "No data provided to load. Skipping database operation."
-        )
+        logger.warning("No data provided to load. Skipping database loading.")
         return
 
     try:
@@ -82,7 +80,7 @@ def load_correlation_exec(transformed_data: pd.DataFrame) -> None:
         if i == 0:
             d[col] = String(50)  # first column as string
         else:
-            d[col] = Float()  # all other columns as float for simplicity
+            d[col] = Float()  # all other columns as float
 
     try:
         transformed_data.to_sql(
